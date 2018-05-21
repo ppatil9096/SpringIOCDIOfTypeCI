@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean
+		id="primitivAndStringEmployee"
+		class="com.pravin.spring.di.bean.Employee">
+		<constructor-arg
+			value="10"
+			type="int"></constructor-arg>
+		<constructor-arg value="pravin"></constructor-arg>
+	</bean>
+
+	<bean
+		id="dependentAdress"
+		class="com.pravin.spring.di.bean.Address">
+		<constructor-arg value="Pune"></constructor-arg>
+		<constructor-arg value="MH"></constructor-arg>
+		<constructor-arg value="India"></constructor-arg>
+	</bean>
+	<bean
+		id="dependentEmployee"
+		class="com.pravin.spring.di.bean.EmpForDependentObject">
+		<constructor-arg
+			value="11"
+			type="int"></constructor-arg>
+		<constructor-arg value="Akshay"></constructor-arg>
+		<constructor-arg>
+			<ref bean="dependentAdress" />
+		</constructor-arg>
+	</bean>
+
+	<bean
+		id="collectionStringListQuestion"
+		class="com.pravin.spring.di.bean.QuestionForCollectionStringList">
+		<constructor-arg value="1"></constructor-arg>
+		<constructor-arg value="What is Spring?"></constructor-arg>
+		<constructor-arg>
+			<list>
+				<value>Spring is FrameWork</value>
+				<value>Spring is Java Based FrameWork</value>
+				<value>Spring is most used FrameWork in indusrty</value>
+			</list>
+		</constructor-arg>
+	</bean>
+
+	<bean
+		id="answerNonStringCollection1"
+		class="com.pravin.spring.di.bean.Answer">
+		<constructor-arg value="1"></constructor-arg>
+		<constructor-arg value="Spring is FrameWork"></constructor-arg>
+		<constructor-arg value="Pravin"></constructor-arg>
+	</bean>
+	<bean
+		id="answerNonStringCollection2"
+		class="com.pravin.spring.di.bean.Answer">
+		<constructor-arg value="2"></constructor-arg>
+		<constructor-arg value="Spring is Java Based FrameWork"></constructor-arg>
+		<constructor-arg value="Akshay"></constructor-arg>
+	</bean>
+
+	<bean
+		id="questionNonStringCollection"
+		class="com.pravin.spring.di.bean.QuestionForCollectionNonStringObject">
+		<constructor-arg value="1"></constructor-arg>
+		<constructor-arg value="What is Spring?"></constructor-arg>
+		<constructor-arg>
+			<list>
+				<ref bean="answerNonStringCollection1" />
+				<ref bean="answerNonStringCollection2" />
+			</list>
+		</constructor-arg>
+	</bean>
+
+	<bean
+		id="questionStringCollectionMap"
+		class="com.pravin.spring.di.bean.QuestionForCollectionStringMap">
+		<constructor-arg value="1"></constructor-arg>
+		<constructor-arg value="What is Spring?"></constructor-arg>
+		<constructor-arg>
+			<map>
+				<entry
+					key="Spring is framework"
+					value="Pravin"></entry>
+				<entry
+					key="Spring is Java Based FrameWork"
+					value="Akshay"></entry>
+			</map>
+		</constructor-arg>
+	</bean>
+
+	<bean
+		id="answerNoStringCollectionMap1"
+		class="com.pravin.spring.di.bean.Answer">
+		<constructor-arg value="1"></constructor-arg>
+		<constructor-arg value="Spring is framework"></constructor-arg>
+		<constructor-arg value="Pravin"></constructor-arg>
+	</bean>
+	<bean
+		id="answerNoStringCollectionMap2"
+		class="com.pravin.spring.di.bean.Answer">
+		<constructor-arg value="2"></constructor-arg>
+		<constructor-arg value="Spring is java based framework"></constructor-arg>
+		<constructor-arg value="Akshay"></constructor-arg>
+	</bean>
+	<bean
+		id="userNoStringCollectionMap1"
+		class="com.pravin.spring.di.bean.User">
+		<constructor-arg value="1"></constructor-arg>
+		<constructor-arg value="Spring is framework"></constructor-arg>
+		<constructor-arg value="Pravin@p.com"></constructor-arg>
+	</bean>
+	<bean
+		id="userNoStringCollectionMap2"
+		class="com.pravin.spring.di.bean.User">
+		<constructor-arg value="2"></constructor-arg>
+		<constructor-arg value="Spring is java based framework"></constructor-arg>
+		<constructor-arg value="Akshay@p.com"></constructor-arg>
+	</bean>
+
+	<bean
+		id="questionNonStringCollectionMap"
+		class="com.pravin.spring.di.bean.QuestionForCollectionNonStringObjectMap">
+		<constructor-arg value="1"></constructor-arg>
+		<constructor-arg value="What is Spring?"></constructor-arg>
+		<constructor-arg>
+			<map>
+				<entry
+					key-ref="answerNoStringCollectionMap1"
+					value-ref="userNoStringCollectionMap1"></entry>
+				<entry
+					key-ref="answerNoStringCollectionMap2"
+					value-ref="userNoStringCollectionMap2"></entry>
+			</map>
+		</constructor-arg>
+	</bean>
+
+	<bean
+		id="employeeForInheritance"
+		class="com.pravin.spring.di.bean.EmpForDependentObject">
+		<constructor-arg
+			value="1"
+			type="int"></constructor-arg>
+		<constructor-arg value="pravin"></constructor-arg>
+	</bean>
+	<bean
+		id="addressForInheritance"
+		class="com.pravin.spring.di.bean.Address">
+		<constructor-arg value="Pune"></constructor-arg>
+		<constructor-arg value="MH"></constructor-arg>
+		<constructor-arg value="India"></constructor-arg>
+	</bean>
+	<bean
+		id="inheritedEmployeeBean"
+		class="com.pravin.spring.di.bean.EmpForDependentObject"
+		parent="employeeForInheritance">
+		<constructor-arg ref="addressForInheritance"></constructor-arg>
+	</bean>
+</beans>
